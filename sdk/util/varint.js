@@ -8,7 +8,7 @@ let varintEncode = function(value){
   }
 
   // Check valid value
-  if (value.toBuffer().length > 8){
+  if (value.toArrayLike(Buffer).length > 8){
     throw new Error('can not varint encode: number is too long');
   }
   if (value.isNeg()){
@@ -21,7 +21,7 @@ let varintEncode = function(value){
   let valueCompared = new BigInteger(128);
 
   while (value.cmp(valueCompared) >= 0){
-    valueBuffer = value.toBuffer();
+    valueBuffer = value.toArrayLike(Buffer);
     result.writeUInt8(valueBuffer.readUInt8(valueBuffer.length-1) | 0x80, offsetCount);
     value.ishrn(7);
     offsetCount++;

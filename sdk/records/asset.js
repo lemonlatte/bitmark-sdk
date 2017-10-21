@@ -167,7 +167,7 @@ Asset.prototype.toJSON = function() {
     name: this._name,
     metadata: mapToMetadataString(this._metadata),
     registrant: this._registrant.toString(),
-    signature: this._signature.toString('hex')
+    signature: new Buffer(this._signature).toString('hex')
   };
 };
 

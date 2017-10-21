@@ -97,6 +97,10 @@ function AccountNumber(data, network, type) {
     return new AccountNumber(data, network, type);
   }
 
+  if (data instanceof Uint8Array) {
+    return AccountNumber.fromPublicKey(new Buffer(data), network, type);
+  }
+
   if (Buffer.isBuffer(data)) {
     return AccountNumber.fromPublicKey(data, network, type);
   }

@@ -77,7 +77,7 @@ Issue.prototype.toJSON = function(){
   assert(this._isSigned, 'Issue error: need to sign the record before getting JSON format');
   return {
     owner: this._owner.toString(),
-    signature: this._signature.toString('hex'),
+    signature: new Buffer(this._signature).toString('hex'),
     asset: this._asset,
     nonce: this._nonce
   };

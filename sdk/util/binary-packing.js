@@ -14,7 +14,7 @@ let appendBuffer = function(desBuffer, srcBuffer) {
   let lengthBuffer = varint.encode(srcBuffer.length);
   let newBufferLength = desBuffer.length + lengthBuffer.length + srcBuffer.length;
 
-  return Buffer.concat([desBuffer, lengthBuffer, srcBuffer], newBufferLength);
+  return Buffer.concat([new Buffer(desBuffer), new Buffer(lengthBuffer), new Buffer(srcBuffer)], newBufferLength);
 };
 
 // let appendTimestamp = function(desBuffer, timestamp) {

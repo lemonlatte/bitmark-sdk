@@ -147,10 +147,10 @@ Seed.isValid = function(seedString) {
 
 Seed.prototype.generateKey = function(index) {
     let counter = new BigInteger(index.toString());
-    let counterBuffer = counter.toBuffer('be', config.seed.counter_length);
+    let counterBuffer = counter.toArrayLike(Buffer, 'be', config.seed.counter_length);
     let nonce = Buffer.alloc(config.seed.nonce_length, 0);
     let key = nacl.secretbox(counterBuffer, nonce, this._core);
-    return key;
+    return new Buffer(key);
 }
 
 Seed.prototype.toBase58 = Seed.prototype.toString = function() { return this._string; };
